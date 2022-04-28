@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grabg"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:background="@drawable/logrebg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.497"
+        tools:ignore="MissingConstraints">
+
+    </ImageView>
+
+    <EditText
+        android:id="@+id/edt_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="이메일 입력"
+        android:inputType="textEmailAddress"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="301dp" />
+
+    <EditText
+        android:id="@+id/edt_Pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="비밀번호 입력"
+        android:inputType="textPassword"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="370dp" />
+
+    <ImageView
+        android:id="@+id/btnLogin"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/biglogin"
+        android:clickable="true"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="453dp" />
+
+    <ImageView
+        android:id="@+id/btnRegister"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/joinbtn_1"
+        android:clickable="true"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="167dp" />
+
+    <ImageView
+        android:id="@+id/imgLogin"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/loginbtn_1"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="167dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
