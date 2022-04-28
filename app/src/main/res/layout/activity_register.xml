@@ -23,7 +23,7 @@
 
 
     <EditText
-        android:id="@+id/edt_Email"
+        android:id="@+id/edtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -35,7 +35,7 @@
         tools:layout_editor_absoluteY="233dp" />
 
     <EditText
-        android:id="@+id/edt_Name"
+        android:id="@+id/edtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="15"
@@ -47,7 +47,7 @@
         tools:layout_editor_absoluteY="281dp" />
 
     <EditText
-        android:id="@+id/edt_child_Name"
+        android:id="@+id/edtChildName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="15"
@@ -59,7 +59,7 @@
         tools:layout_editor_absoluteY="331dp" />
 
     <EditText
-        android:id="@+id/edt_Pwd"
+        android:id="@+id/edtPwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="15"
@@ -71,7 +71,7 @@
         tools:layout_editor_absoluteY="382dp" />
 
     <EditText
-        android:id="@+id/edt_rePwd"
+        android:id="@+id/edtRePwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="15"

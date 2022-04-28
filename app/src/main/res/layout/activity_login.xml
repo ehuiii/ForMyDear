@@ -22,7 +22,7 @@
     </ImageView>
 
     <EditText
-        android:id="@+id/edt_Email"
+        android:id="@+id/edtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -33,7 +33,7 @@
         tools:layout_editor_absoluteY="301dp" />
 
     <EditText
-        android:id="@+id/edt_Pwd"
+        android:id="@+id/edtPwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
