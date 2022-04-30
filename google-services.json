@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "171362756285",
+    "project_id": "formydear-87f16",
+    "storage_bucket": "formydear-87f16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171362756285:android:8c02761034b8eb1444b9d4",
+        "android_client_info": {
+          "package_name": "com.company.for_my_dear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171362756285-delaet4b542ngp1a69e48i9dk8cuhnkb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgRS6zycZGp1nooG7eZpJP8WTZ8DLfOn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "171362756285-delaet4b542ngp1a69e48i9dk8cuhnkb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

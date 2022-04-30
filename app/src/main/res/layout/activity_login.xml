@@ -9,6 +9,7 @@
     tools:context=".LoginActivity">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="500dp"
         android:background="@drawable/logrebg"
@@ -22,58 +23,74 @@
     </ImageView>
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="20dp"
+        android:ems="14"
         android:hint="이메일 입력"
         android:inputType="textEmailAddress"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="301dp" />
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/etPwd"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/edtPwd"
+        android:id="@+id/etPwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:ems="14"
         android:hint="비밀번호 입력"
         android:inputType="textPassword"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="370dp" />
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail"
+        tools:ignore="MissingConstraints" />
 
-    <ImageView
+    <Button
         android:id="@+id/btnLogin"
         android:layout_width="210dp"
         android:layout_height="40dp"
         android:layout_margin="8dp"
         android:background="@drawable/biglogin"
         android:clickable="true"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="453dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/etPwd"
+        tools:ignore="MissingConstraints" />
 
-    <ImageView
+    <Button
         android:id="@+id/btnRegister"
         android:layout_width="140dp"
         android:layout_height="40dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="28dp"
         android:layout_weight="1"
         android:background="@drawable/joinbtn_1"
         android:clickable="true"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="167dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
 
-    <ImageView
+    <Button
         android:id="@+id/imgLogin"
         android:layout_width="140dp"
         android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
         android:layout_weight="1"
+        android:clickable="false"
         android:background="@drawable/loginbtn_1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="167dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
