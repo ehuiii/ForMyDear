@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         moveMainPage(mFirebaseAuth?.currentUser)
     }
 
+    //자동 로그인
     fun moveMainPage(user: FirebaseUser?){
         if(user != null){
             startActivity(Intent(this, MainActivity::class.java))
