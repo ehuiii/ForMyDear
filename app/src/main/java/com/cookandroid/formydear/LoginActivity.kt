@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         mFirebaseAuth = FirebaseAuth.getInstance()
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Firebase")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ForMyDear")
 
         mEtEmail = findViewById(R.id.etEmail)
         mEtPwd = findViewById(R.id.etPwd)

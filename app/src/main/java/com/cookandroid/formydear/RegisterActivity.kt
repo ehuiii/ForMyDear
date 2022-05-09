@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
 
         mFirebaseAuth = FirebaseAuth.getInstance()
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Firebase").child("UserAccount")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ForMyDear").child("UserAccount")
         mEtEmail = findViewById<EditText>(R.id.etEmail)
         mBtnConfirmID = findViewById<Button>(R.id.btnConfirmID)
         mEtName=findViewById<EditText>(R.id.etName)
