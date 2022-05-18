@@ -6,34 +6,39 @@
     android:layout_height="match_parent"
     android:background="@color/oatmeal"
     >
+
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/postToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar"
         android:background="@color/oatmeal">
         <Button
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/btnBack"
             android:background="@drawable/backbtn"
+
             />
         <TextView
+            android:id="@+id/categorytoolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/categorytoolbar"
-            android:text="카테고리"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_gravity="center"
-            />
+            android:text="카테고리 이름"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+
 
     </androidx.appcompat.widget.Toolbar>
 
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/childcategoryRv"
+        android:id="@+id/categoryRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/postToolbar"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="1dp"
@@ -41,6 +46,18 @@
         android:layout_marginEnd="3dp">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/plusBtn"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/circleplus"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp">
+
+    </Button>
 
 
 </RelativeLayout>

@@ -7,18 +7,20 @@
     android:background="#F7F6FF"
     tools:context=".InfoEditActivity">
 
+    // 툴바
     <Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/tbinfoedit"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="#F7F6FF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="7dp">
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/btnBack"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/backbtn"
@@ -39,23 +41,9 @@
             android:textSize="25dp" />
     </Toolbar>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="사진 편집"
-        android:textColor="@android:color/black"
-        android:textSize="15dp"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="167dp" />
-
+    // 이미지 등록
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imgMan"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginStart="5dp"
@@ -69,95 +57,128 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/btnEdtimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:text="사진 편집"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgMan"
+        tools:ignore="MissingConstraints"
+        style="?android:borderlessButtonStyle"/>
 
+
+    //백그라운드
     <ImageView
         android:id="@+id/infoeditbg"
         android:layout_width="360dp"
-        android:layout_height="600dp"
+        android:layout_height="490dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="224dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/bg_5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/etlAttribte"
+    //이름
+
+    <TextView
+        android:id="@+id/edtxtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
-        android:text="특성"
+        android:text="이름"
+        android:textColor="#000000"
         android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etlRelation"
+        app:layout_constraintEnd_toStartOf="@+id/edtName"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/btnAgedropdown"
-        android:layout_width="47dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/agedropdownbtn"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.593"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etEdname"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/etEdage"
-        android:layout_width="101dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/agespinner"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etEdname"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/etEdname"
+        android:id="@+id/edtName"
         android:layout_width="233dp"
         android:layout_height="37dp"
         android:layout_marginTop="244dp"
         android:background="@drawable/longtf"
         android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnRegister2"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/btnGirl"
         app:layout_constraintHorizontal_bias="0.966"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:inputType="textPersonName"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/etlRelation"
+    //나이
+
+    <TextView
+        android:id="@+id/etlAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
-        android:text="관계"
+        android:text="나이"
+        android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etlSex"
+        app:layout_constraintTop_toBottomOf="@+id/edtxtName"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    //성별
+
+    <TextView
+        android:id="@+id/edtAge"
+        android:layout_width="95dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/agespinner"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.366"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edtName"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/spinnerAge"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="52dp"
+        android:animateLayoutChanges="true"
+        android:animationCache="true"
+        android:background="@drawable/agedropdownbtn"
+        android:scrollbars="vertical"
+        android:spinnerMode="dialog"
+        android:textSize="0.1sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edtName"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
         android:id="@+id/etlSex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="29dp"
         android:background="@android:color/transparent"
         android:text="성별"
+        android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"
@@ -166,84 +187,98 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnRegister2"
+        android:id="@+id/btnBoy"
+        android:layout_width="135dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="52dp"
+        android:layout_weight="1"
+        android:background="@drawable/btnboy"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edtAge"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnGirl"
         android:layout_width="135dp"
         android:layout_height="37dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="60dp"
         android:layout_weight="1"
-        android:background="@drawable/girlbtn"
+        android:background="@drawable/btngirl"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etEdage"
-
+        app:layout_constraintTop_toTopOf="@+id/edtAge"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/edtxtName"
+    //관계
+
+    <TextView
+        android:id="@+id/etlRelation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="29dp"
         android:background="@android:color/transparent"
-        android:text="이름"
+        android:text="관계"
+        android:textColor="#000000"
         android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/etEdname"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="253dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etlSex"
+        tools:ignore="MissingConstraints" />
+
+
+    //특성
 
     <EditText
-        android:id="@+id/etEdname2"
+        android:id="@+id/edtRelation"
         android:layout_width="233dp"
         android:layout_height="37dp"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="116dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/longtf"
+        android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnRegister2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnWoman"
+        app:layout_constraintTop_toTopOf="@+id/btnBoy"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/btnWoman"
-        android:layout_width="135dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="52dp"
-        android:layout_weight="1"
-        android:background="@drawable/boybtn"
-        android:clickable="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etEdage"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/etlAge"
+    <TextView
+        android:id="@+id/edtAttribte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
-        android:text="나이"
+        android:text="특성"
+        android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtxtName"
+        app:layout_constraintTop_toBottomOf="@+id/etlRelation"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etEdname3"
+        android:id="@+id/edtAttribute"
         android:layout_width="230dp"
         android:layout_height="150dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/bigtf"
+        android:gravity="top"
+        android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
+        app:layout_constraintHorizontal_bias="0.629"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etEdname2"
+        app:layout_constraintTop_toBottomOf="@+id/edtRelation"
         tools:ignore="MissingConstraints" />
 
+    //편집 완료
     <Button
         android:id="@+id/btnEditCom"
         android:layout_width="260dp"
@@ -254,8 +289,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEdname3"
+        app:layout_constraintTop_toBottomOf="@+id/edtAttribute"
         tools:ignore="MissingConstraints" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

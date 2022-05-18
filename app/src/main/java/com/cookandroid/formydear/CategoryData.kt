@@ -1,6 +1,5 @@
 package com.cookandroid.formydear
 
-class CategoryData {
-    var categoryName:String =""
-    var img:Int = 0
+class CategoryData(val categoryName: String, val photo: String) {
+
 }

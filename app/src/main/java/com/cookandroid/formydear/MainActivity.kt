@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         btnGuardian.setOnClickListener{
             //val intent = Intent(this, GuardianActivity::class.java)//보호자 액티비티
+            val intent = Intent(this, GuardianmainActivity::class.java)//임시로 카테고리 액티비티로 이동하도록
             startActivity(intent)
         }
         btnChild.setOnClickListener{
