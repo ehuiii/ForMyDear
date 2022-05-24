@@ -99,10 +99,10 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="3dp">
 
-        <ImageButton
-            android:id="@+id/backspace"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@drawable/backbtn"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"

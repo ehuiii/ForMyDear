@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37135416666666665" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37135416666666665" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_category.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_child_category.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_edit_post.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_faq.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_faqanswer.xml" value="0.22" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_guardianmain.xml" value="0.196875" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_infoedit.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_login.xml" value="0.1082427536231884" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_post.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_post_list.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_register.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/activity_write_post.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/item_category_recycler.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/item_faq_recycler.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/layout/item_post_recycler.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/menu/plus.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/seoeu/AndroidStudioProjects/ForMyDear/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37135416666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

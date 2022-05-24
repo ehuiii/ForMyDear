@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/oatmeal">
+
         <Button
+            android:id="@+id/btnBack"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:id="@+id/btnBack"
-            android:background="@drawable/backbtn"
+            android:background="@drawable/backbtn" />
 
-            />
         <TextView
             android:id="@+id/editPostText"
             android:layout_width="wrap_content"
@@ -46,15 +46,15 @@
     </ImageView>
 
     <TextView
+        android:id="@+id/titletext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/imageView2"
         android:layout_alignTop="@+id/imageView2"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:textSize="20sp"
         android:text="제목"
-        android:id="@+id/titletext"/>
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/edtTitle"

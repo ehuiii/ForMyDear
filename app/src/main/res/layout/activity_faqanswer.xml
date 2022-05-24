@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/oatmeal">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/oatmeal"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/backbtn" />
+
+        <TextView
+            android:id="@+id/faqtoolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="FAQ"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/faqQuestionbg"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/question_bg"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/faqDQ"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="22dp"
+        android:text="질문" />
+
+    <ImageView
+        android:id="@+id/faqAnswer"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/answer_bg"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/faqDA"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignStart="@+id/faqAnswer"
+        android:layout_alignEnd="@+id/faqAnswer"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="51dp"
+        android:text="답변" />
+
+
+</RelativeLayout>

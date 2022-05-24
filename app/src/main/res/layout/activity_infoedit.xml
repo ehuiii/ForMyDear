@@ -17,12 +17,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="7dp">
+        tools:layout_editor_absoluteY="-2dp">
 
-        <ImageButton
+        <Button
             android:id="@+id/btnBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@drawable/backbtn"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -263,31 +263,33 @@
         app:layout_constraintTop_toBottomOf="@+id/etlRelation"
         tools:ignore="MissingConstraints" />
 
+    //편집 완료
+
     <EditText
         android:id="@+id/edtAttribute"
         android:layout_width="230dp"
         android:layout_height="150dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bigtf"
         android:gravity="top"
+        android:scrollbars="vertical"
         android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintHorizontal_bias="0.668"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtRelation"
         tools:ignore="MissingConstraints" />
 
-    //편집 완료
     <Button
         android:id="@+id/btnEditCom"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/edtendbtn"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtAttribute"
         tools:ignore="MissingConstraints" />

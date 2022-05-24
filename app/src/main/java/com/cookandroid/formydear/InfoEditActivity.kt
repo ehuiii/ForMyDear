@@ -1,29 +1,17 @@
 package com.cookandroid.formydear
 
-import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import android.widget.ArrayAdapter.*
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.loader.content.CursorLoader
-import com.bumptech.glide.Glide
+import android.widget.ArrayAdapter.createFromResource
+import androidx.appcompat.app.AppCompatActivity
 
 
 class InfoEditActivity : AppCompatActivity() {
-
-    private val TAG: String = "InfoEditActivity"
 
     lateinit var edtName: EditText
     lateinit var edtRelation: EditText
@@ -32,13 +20,11 @@ class InfoEditActivity : AppCompatActivity() {
     lateinit var btnEdtimg: Button
     lateinit var btnBoy: Button
     lateinit var btnGirl: Button
+    lateinit var btnBack : Button
     lateinit var imgMan: ImageView
     lateinit var spinnerAge: Spinner
 
     private val Gallery = 1
-
-    var imgUrl : String = ""
-
 
 
     //키보드 내려가게 하기
@@ -52,22 +38,28 @@ class InfoEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_infoedit)
 
-        imgMan = findViewById<ImageView>(R.id.imgMan)
-        edtName = findViewById<EditText>(R.id.edtName)
-        edtRelation = findViewById<EditText>(R.id.edtRelation)
-        btnEditCom = findViewById<Button>(R.id.btnEditCom)
-        btnBoy = findViewById<Button>(R.id.btnBoy)
-        btnGirl = findViewById<Button>(R.id.btnGirl)
-        btnEdtimg = findViewById<Button>(R.id.btnEdtimg)
-        spinnerAge = findViewById<Spinner>(R.id.spinnerAge)
-        edtAge = findViewById<TextView>(R.id.edtAge)
+        imgMan = findViewById(R.id.imgMan)
+        edtName = findViewById(R.id.edtName)
+        edtRelation = findViewById(R.id.edtRelation)
+        btnBack = findViewById(R.id.btnBack)
+        btnEditCom = findViewById(R.id.btnEditCom)
+        btnBoy = findViewById(R.id.btnBoy)
+        btnGirl = findViewById(R.id.btnGirl)
+        btnEdtimg = findViewById(R.id.btnEdtimg)
+        spinnerAge = findViewById(R.id.spinnerAge)
+        edtAge = findViewById(R.id.edtAge)
+
+        //뒤로 가기
+        btnBack.setOnClickListener{
+            finish()
+        }
 
 
 
         // 사진 편집 - 갤러리 들어가기
         btnEdtimg.setOnClickListener {
-            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
             startActivityForResult(intent, Gallery)
         }
 
@@ -90,105 +82,72 @@ class InfoEditActivity : AppCompatActivity() {
                 when (position) {
                     //미선택
                     0 -> {
-                        edtAge.setText("선택안함")
+                        edtAge.text = "선택안함"
                     }
                     1 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     2 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
-                    }
-                    2 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     3 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     4 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     5 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     6 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     7 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     8 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     9 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     10 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     11 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     12 -> {
-                        edtAge.setText(spinnerAge.selectedItem.toString())
+                        edtAge.text = spinnerAge.selectedItem.toString()
                     }
                     //일치하는 게 없는 경우
                     else -> {
-                        edtAge.setText("선택안함")
+                        edtAge.text = "선택안함"
                     }
                 }
-
             }
         }
-
         // 성별
         btnBoy.setOnClickListener {
             btnBoy.isSelected = btnBoy.isSelected != true
+            btnGirl.isSelected = false
         }
         btnGirl.setOnClickListener {
-            btnGirl.isSelected = btnGirl.isSelected !=true
+            btnGirl.isSelected = btnGirl.isSelected != true
+            btnBoy.isSelected = false
         }
+
 
         // 편집 완료 버튼 - 데이터 전달 > GuardianmainActivity
         btnEditCom.setOnClickListener {
-            if (edtName.text.isEmpty()) {
-                Toast.makeText(this, "이름을 입력하세요", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                Toast.makeText(this, "편집 완료", Toast.LENGTH_SHORT).show()
-                val strName = edtName.text.toString()
-                val spiAge = spinnerAge.selectedItem
-                val intent = Intent(this, GuardianmainActivity::class.java)
-                intent.putExtra("msgName", strName)
-                intent.putExtra("age", spiAge.toString())
-                startActivity(intent)
-            }
+            val nextIntent = Intent(this, GuardianmainActivity::class.java)
+            val strName = edtName.text.toString()
+            val spiAge = spinnerAge.selectedItem
+            //val selSex =
+            intent.putExtra("name", strName)
+            intent.putExtra("age", spiAge.toString())
+            startActivity(nextIntent)
         }
-    }
-
-    //프로필 사진
-    //이미지 화면 출력
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == Gallery) {
-            if(resultCode == Activity.RESULT_OK){
-                imgUrl = getRealPathFromUri(data!!.data)
-                Glide.with(applicationContext)
-                        .load(imgUrl)
-                        .into(imgMan)
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    //절대경로
-    private fun getRealPathFromUri(uri: Uri?) : String{
-        var proj : Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        var cursorLoader : CursorLoader = CursorLoader(this,uri!!,proj,null,null,null)
-        var cursor : Cursor? = cursorLoader.loadInBackground()
-        var columIndex : Int = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        cursor.moveToFirst()
-        var url : String = cursor.getString(columIndex)
-        cursor.close()
-        return url
     }
 }
 
