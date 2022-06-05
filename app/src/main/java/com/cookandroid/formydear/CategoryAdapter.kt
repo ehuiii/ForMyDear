@@ -39,9 +39,9 @@ class CategoryAdapter(val context: Context, val viewDataList: ArrayList<Category
         }
     }
 
-    //private var mFirebaseAuth: FirebaseAuth? = FirebaseAuth.getInstance() //파이어베이스 인증
-    //private var mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("ForMyDear")//실시간 데이터베이스
-    //private var storage: FirebaseStorage? = FirebaseStorage.getInstance()
+    private var mFirebaseAuth: FirebaseAuth? = FirebaseAuth.getInstance() //파이어베이스 인증
+    private var mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("ForMyDear")//실시간 데이터베이스
+    private var storage: FirebaseStorage? = FirebaseStorage.getInstance()
 
     inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val viewCategoryImg = itemView.findViewById<ImageView>(R.id.postCategoryImg)
@@ -83,7 +83,7 @@ class CategoryAdapter(val context: Context, val viewDataList: ArrayList<Category
             Toast.makeText(view.context, "$position 아이템 클릭!", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(context, PostListActivity::class.java)
-            intent.putExtra("SELECTED_ITEM", viewDataList[position].photo)
+            intent.putExtra("SELECTED_ITEM", viewDataList[position].categoryName)
             context.startActivity(intent)
         }
 

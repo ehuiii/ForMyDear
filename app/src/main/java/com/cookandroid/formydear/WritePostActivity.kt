@@ -8,10 +8,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.loader.content.CursorLoader
@@ -21,16 +18,143 @@ import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+//import com.google.firebase.database.R
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlinx.android.synthetic.main.activity_write_post.*
+import java.io.File
 
 class WritePostActivity: AppCompatActivity()  {
+/*
+    // 이미지 선택시 상수 값
+    var PICK_IMAGE_FROM_ALBUM = 0
+    var photoUri: Uri? = null
 
+    private var postId: String = ""
+    private lateinit var categoryName:String
+
+    private lateinit var mFirebaseAuth: FirebaseAuth // 파이어베이스 인증 처리
+    private lateinit var mDatabaseRef: DatabaseReference // 실시간 데이터 베이스
+    private var storage : FirebaseStorage? = FirebaseStorage.getInstance()
+
+    private lateinit var mTvCategoryName: TextView//카테고리 이름
+    private lateinit var mEtHits: EditText // 조회수
+    private lateinit var mEtPostContent: EditText // 글 내용 characteristic
+    private lateinit var mEtPostTitle: EditText // 제목
+    private lateinit var mBtnPostEnd: Button // 게시글 업로드 버튼
+    private lateinit var mBtnBack: Button // 닫기 가기 버튼
+    private lateinit var ivPostData:ImageView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_write_post)
+
+        //파이어베이스 계정, 리얼타임 데이터베이스
+        mFirebaseAuth = FirebaseAuth.getInstance()
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ForMyDear")
+
+        mTvCategoryName = findViewById(R.id.writePostText)
+        //mEtHits = findViewById(R.id.etPostDate)
+        mEtPostContent = findViewById(R.id.edtCharacteristic)
+        mEtPostTitle = findViewById(R.id.edtTitle)
+        mBtnPostEnd = findViewById(R.id.btnEnd)
+        mBtnBack = findViewById(R.id.btnBack)
+        //ivPostData = findViewById(R.id.ivPostCamera)
+
+        categoryName = intent.getStringExtra("categoryName").toString()
+        postId = mDatabaseRef.ref.child("UserPosts").child("${mFirebaseAuth!!.currentUser!!.uid}").push().key.toString()
+
+        //없애면 될 듯..?
+        mDatabaseRef.child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}").child(categoryName).addValueEventListener(object :
+                ValueEventListener {
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var user:UserAccount? = snapshot.getValue(UserAccount::class.java)
+                mTvCategoryName.text = user!!.userName
+            }
+        })
+
+        ivPostData.setOnClickListener{
+            // open the album
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type="image/*"
+            startActivityForResult(photoPickerIntent,PICK_IMAGE_FROM_ALBUM)
+        }
+
+        mBtnPostEnd.setOnClickListener {
+            postAdd()
+            finish()
+        }
+
+        mBtnBack.setOnClickListener {
+            super.onBackPressed()
+            finish()
+        }
+    }
+
+    // onActivityResult
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_FROM_ALBUM) {
+            if (resultCode == Activity.RESULT_OK) {
+                // This is path to the selected image
+                photoUri = data?.data
+                ivPostData.setImageURI(photoUri)
+            } else {
+                // Exit the addPhotoActivity if you leave the album without selecting it
+            }
+        }
+    }
+
+    private fun postAdd() {
+        var hashMap: HashMap<String, Any> = HashMap()
+        var strHits: String = mEtHits.text.toString()
+        var strPostContent: String = mEtPostContent.text.toString()
+        var strPostTitle: String = mEtPostTitle.text.toString()
+        var strPostId: String = postId
+        var strPostUri: String= ""
+        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        var imageFileName = "IMAGE_" + strPostId + "_postImage_by"+categoryName+".png"
+        var storageRef = storage?.reference?.child("${mFirebaseAuth?.currentUser!!.uid}")?.child(imageFileName)
+
+
+        hashMap["postId"] = strPostId
+        hashMap["postTitle"] = strPostTitle
+        hashMap["postHits"] = strHits
+        hashMap["postContent"] = strPostContent
+        hashMap["categoryName"] = categoryName
+        hashMap["star"] = 1
+        hashMap["timestamp"] = timestamp
+
+
+        // Promise method
+        if(photoUri != null) { // 사진 선택했을 때
+            storageRef?.putFile(photoUri!!)
+                    ?.continueWithTask { task: com.google.android.gms.tasks.Task<UploadTask.TaskSnapshot> ->
+                        return@continueWithTask storageRef.downloadUrl
+                    }?.addOnSuccessListener { uri ->
+                        strPostUri = uri.toString()
+                        hashMap["postPhotoUri"] = strPostUri
+                        mDatabaseRef.ref.child("UserPosts").child("${mFirebaseAuth!!.currentUser!!.uid}").child(postId).setValue(hashMap)
+                    }
+        }
+        else{ // 사진 선택 안했을 때
+            hashMap["postPhotoUri"] = strPostUri
+            mDatabaseRef.ref.child("UserPosts").child("${mFirebaseAuth!!.currentUser!!.uid}").child(postId).setValue(hashMap)
+        }
+
+        Toast.makeText(this, "게시글 추가 완료", Toast.LENGTH_SHORT).show()
+
+    }
+*/
+
+ */
     lateinit var btnBack: Button
 
     lateinit var photoButton: Button
@@ -38,7 +162,7 @@ class WritePostActivity: AppCompatActivity()  {
     lateinit var btnEnd: Button
 
     lateinit var edtTitle: EditText
-    lateinit var edtCharacteristic: EditText
+    lateinit var edtContent: EditText
     lateinit var ivPhoto: ImageView
 
     var imgUrl : String = ""
@@ -71,7 +195,7 @@ class WritePostActivity: AppCompatActivity()  {
         soundButton = findViewById(R.id.soundButton)
         btnEnd = findViewById(R.id.btnEnd)
         edtTitle = findViewById(R.id.edtTitle)
-        edtCharacteristic = findViewById(R.id.edtCharacteristic)
+        edtContent = findViewById(R.id.edtContent)
         ivPhoto = findViewById(R.id.ivPhoto)
 
         photoButton.setOnClickListener {
@@ -116,7 +240,7 @@ class WritePostActivity: AppCompatActivity()  {
                         val hashMap : HashMap<String, String> = HashMap()
 
                         var strTitle: String = edtTitle.text.toString()
-                        var strCharacteristic = edtCharacteristic.text.toString()
+                        var strCharacteristic = edtContent.text.toString()
 
                         hashMap.put("imgUrl", downloadUrl.toString())
                         hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
@@ -142,7 +266,7 @@ class WritePostActivity: AppCompatActivity()  {
                     val hashMap : HashMap<String, String> = HashMap()
 
                     var strTitle: String = edtTitle.text.toString()
-                    var strCharacteristic = edtCharacteristic.text.toString()
+                    var strCharacteristic = edtContent.text.toString()
 
                     hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
                     hashMap.put("title", strTitle)

@@ -117,7 +117,7 @@ class RegisterActivity : AppCompatActivity() {
                         account.userName = strName
                         account.userChildName = strChildName
                         account.userPwd = strPwd
-                        account.userPhotoUri=""
+                        //account.userPhotoUri=""
 
                         // setValue : database에 insert (삽입) 행위
                         mDatabaseRef.child(firebaseUser?.uid.toString())

@@ -20,7 +20,7 @@
 
             />
         <TextView
-            android:id="@+id/categorytoolbar"
+            android:id="@+id/tvCategoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -32,7 +32,6 @@
 
 
     </androidx.appcompat.widget.Toolbar>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRv"
@@ -46,6 +45,7 @@
         android:layout_marginEnd="3dp">
 
     </androidx.recyclerview.widget.RecyclerView>
+
 
     <Button
         android:layout_width="50dp"

@@ -1,11 +1,19 @@
 package com.cookandroid.formydear
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 
 class GuardianmainActivity : AppCompatActivity() {
 
@@ -16,7 +24,15 @@ class GuardianmainActivity : AppCompatActivity() {
     private lateinit var tvSex: TextView
     private lateinit var btnCategory: Button
     private lateinit var btnFaq: Button
+    private lateinit var ivProfile: ImageView
 
+    //파이어베이스에서 인스턴스 가져오기
+    private var mFirebaseAuth: FirebaseAuth? = FirebaseAuth.getInstance()
+    private var mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("Firebase")
+    private var storage: FirebaseStorage? = FirebaseStorage.getInstance()
+
+    // context
+    private lateinit var activitys: Activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +45,45 @@ class GuardianmainActivity : AppCompatActivity() {
         tvSex = findViewById(R.id.tvSex)
         btnCategory = findViewById(R.id.btnCategory)
         btnFaq = findViewById(R.id.btnFaq)
+        ivProfile = findViewById(R.id.ivProfile)
 
+        val mFirebaseUser : FirebaseUser? = mFirebaseAuth?.currentUser
+        val userId:String = mFirebaseUser!!.uid
 
-        //데이터 받아오기
-        val intent = intent
-        tvName.text = intent.getStringExtra("name")
-        tvAge.text = intent.getStringExtra("age")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ForMyDear")
+                .child("UserAccount").child(userId)
 
+        mFirebaseAuth = FirebaseAuth.getInstance()
+
+        mDatabaseRef.addValueEventListener(object : ValueEventListener {
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            //데이터 스냅샷으로 받아오기
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.value ==null){ // 널이면 아무것도하지마
+
+                }
+                else {
+                    var user: UserAccount? = snapshot.getValue(UserAccount::class.java)
+
+                    tvName.text = "${user?.userChildName}"
+
+                    tvAge.text = "${user?.userChildAge}"
+
+                    // 사진 url 추가 후 load하는 코드 넣을 자리
+                    if (user!!.userPhotoUri == "") {
+                        ivProfile.setImageResource(R.drawable.man)
+                    } else { // userPhotoUri가 있으면 그 사진 로드하기
+                        Glide.with(activitys)
+                                .load(user!!.userPhotoUri)
+                                .into(ivProfile)
+                    }
+                }
+            }
+        })
 
         //뒤로 가기
         btnBack.setOnClickListener{
@@ -60,4 +108,6 @@ class GuardianmainActivity : AppCompatActivity() {
             startActivity(intent3)
         }
     }
+
+
 }

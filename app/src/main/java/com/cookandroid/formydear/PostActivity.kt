@@ -1,10 +1,7 @@
 package com.cookandroid.formydear
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,10 +21,11 @@ class PostActivity: AppCompatActivity() {
     //위젯 연결할 변수 선언
     lateinit var tvTitle : TextView
     lateinit var btnEdit : Button
-    lateinit var tvCharacteristic : TextView
+    lateinit var tvContent : TextView
     lateinit var tvHitsNum : TextView
     lateinit var ivPhoto : ImageView
     lateinit var ivStar : ImageView
+    lateinit var btnBack : Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +34,9 @@ class PostActivity: AppCompatActivity() {
 
         //변수와 위젯 id 연결
         tvTitle = findViewById(R.id.tvTitle)
-        tvCharacteristic = findViewById(R.id.tvCharacteristic)
+        tvContent = findViewById(R.id.tvContent)
         btnEdit = findViewById(R.id.btnEdit)
+        btnBack = findViewById(R.id.btnBack)
         tvHitsNum = findViewById(R.id.tvHitsNum)
         ivPhoto = findViewById(R.id.ivPhoto)
         ivStar = findViewById(R.id.ivStar)
@@ -52,13 +51,13 @@ class PostActivity: AppCompatActivity() {
 
         //intent로 값 받아옴
         var intent: Intent = getIntent()
-        //var uid: String? = intent.getStringExtra("UID")
+        var uid: String? = intent.getStringExtra("UID")
         var title: String? = intent.getStringExtra("Title")
         var img_url: String? = intent.getStringExtra("IMGURL")
 
         //화면에 받아온 값 출력
         tvTitle.setText(title.toString())
-        tvCharacteristic.setText(intent.getStringExtra("Characteristic"))
+        tvContent.setText(intent.getStringExtra("Characteristic"))
         tvHitsNum.setText(intent.getStringExtra("HitsNum"))
 
         if (img_url == null) {
@@ -69,6 +68,10 @@ class PostActivity: AppCompatActivity() {
                     .load(img_url)
                     .apply(cropOptions.optionalCircleCrop())
                     .into(ivPhoto)
+        }
+
+        btnBack.setOnClickListener{
+            finish()
         }
 
 

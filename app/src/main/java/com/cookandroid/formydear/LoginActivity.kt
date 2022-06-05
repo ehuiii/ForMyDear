@@ -64,10 +64,12 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    /*
+    //자동 로그인 시작!
     override fun onStart() {
         super.onStart()
         moveMainPage(mFirebaseAuth?.currentUser)
-    }
+    }*/
 
     //자동 로그인
     fun moveMainPage(user: FirebaseUser?){
