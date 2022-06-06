@@ -86,6 +86,7 @@ class PostListActivity: AppCompatActivity()  {
         }
         plusBtn.setOnClickListener{
             var intent = Intent(this, WritePostActivity::class.java)
+            intent.putExtra("SELECTED_ITEM", selectedItem)
             startActivity(intent)
         }
 

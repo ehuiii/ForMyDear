@@ -5,7 +5,6 @@ import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
@@ -177,13 +176,17 @@ class WritePostActivity: AppCompatActivity()  {
 
 
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_post)
 
+        var intent : Intent = getIntent()
+
+        var selectedItem : String? = intent.getStringExtra("SELECTED_ITEM")
+
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
-        var reciveData1 = intent.getStringExtra("SELECTED_ITEM")
+        //var reciveData1 = intent.getStringExtra("SELECTED_ITEM")
 
         //파이어베이스 계정, 리얼타임 데이터베이스
         mFirebaseAuth = FirebaseAuth.getInstance()
@@ -211,7 +214,7 @@ class WritePostActivity: AppCompatActivity()  {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         //파이어베이스의 데이터를 가져옴
                         var user: UserAccount? = snapshot.getValue(UserAccount::class.java)
-                        Log.d("택", "${user!!.userEmail.toString()}")
+                        Log.d("택", "${user!!.userId.toString()}")
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -240,15 +243,15 @@ class WritePostActivity: AppCompatActivity()  {
                         val hashMap : HashMap<String, String> = HashMap()
 
                         var strTitle: String = edtTitle.text.toString()
-                        var strCharacteristic = edtContent.text.toString()
+                        var strContent = edtContent.text.toString()
 
                         hashMap.put("imgUrl", downloadUrl.toString())
                         hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
                         hashMap.put("title", strTitle)
-                        hashMap.put("characteristic", strCharacteristic)
+                        hashMap.put("characteristic", strContent)
                         hashMap.put("timstamp", timestamp)
 
-                        mDatabaseRef.ref.child("PostCategory").child("${strTitle}").push().setValue(hashMap)
+                        mDatabaseRef.ref.child("PostData").child("${selectedItem}").push().setValue(hashMap)
                                 .addOnCompleteListener {
                                     if(it.isSuccessful){
                                         Toast.makeText(this, "업로드", Toast.LENGTH_SHORT).show()
@@ -257,7 +260,7 @@ class WritePostActivity: AppCompatActivity()  {
 
                         Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
                         var intent = Intent(this, PostActivity::class.java)
-                        intent.putExtra("SELECTED_ITEM", strTitle)
+                        intent.putExtra("SELECTED_ITEM", selectedItem)
                         startActivity(intent)
                         finish()
                     }
@@ -266,18 +269,18 @@ class WritePostActivity: AppCompatActivity()  {
                     val hashMap : HashMap<String, String> = HashMap()
 
                     var strTitle: String = edtTitle.text.toString()
-                    var strCharacteristic = edtContent.text.toString()
+                    var strContent = edtContent.text.toString()
 
                     hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
                     hashMap.put("title", strTitle)
-                    hashMap.put("characteristic", strCharacteristic)
+                    hashMap.put("content", strContent)
                     hashMap.put("timestamp", timestamp)
 
                     mDatabaseRef.ref.child("PostData").push().setValue(hashMap)
 
                     Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
                     var intent = Intent(this, PostActivity::class.java)
-                    intent.putExtra("SELECTED_ITEM", strTitle)
+                    intent.putExtra("SELECTED_ITEM", selectedItem)
                     startActivity(intent)
                     finish()
 
@@ -287,6 +290,7 @@ class WritePostActivity: AppCompatActivity()  {
             }
         }
 
+        //뒤로가기 버튼
         btnBack.setOnClickListener {
             onBackPressed()
         }

@@ -57,7 +57,7 @@ class PostActivity: AppCompatActivity() {
 
         //화면에 받아온 값 출력
         tvTitle.setText(title.toString())
-        tvContent.setText(intent.getStringExtra("Characteristic"))
+        tvContent.setText(intent.getStringExtra("Content"))
         tvHitsNum.setText(intent.getStringExtra("HitsNum"))
 
         if (img_url == null) {
