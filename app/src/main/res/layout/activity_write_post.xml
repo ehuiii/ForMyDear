@@ -30,8 +30,9 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/imageView2"
+
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="350dp"
         android:layout_height="600dp"
 
@@ -42,125 +43,142 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/bg_5"
         tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </ImageView>
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="350dp"
+                android:layout_height="600dp"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:textSize="20sp"
-        android:text="제목"
-        android:id="@+id/titletext"/>
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_5"
+                tools:ignore="MissingConstraints">
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:textSize="20sp"
+                android:text="제목"
+                android:id="@+id/titletext"/>
 
-    <EditText
-        android:id="@+id/edtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_alignEnd="@+id/imageView2"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_toEndOf="@+id/titletext"
-        android:background="@drawable/longtf"
-        android:textSize="17sp"
-        tools:ignore="MissingConstraints" />
+            <EditText
+                android:id="@+id/edtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_alignEnd="@+id/imageView2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@+id/titletext"
+                android:background="@drawable/longtf"
+                android:textSize="17sp"
+                tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/phototext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titletext"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:text="사진"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/phototext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titletext"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:text="사진"
+                android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/photoButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@+id/edtTitle"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/addphotobtn"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_toEndOf="@+id/phototext" />
+            <Button
+                android:id="@+id/photoButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/edtTitle"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/addphotobtn"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_toEndOf="@+id/phototext" />
 
-    <ImageView
-        android:id="@+id/ivPhoto"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@+id/edtTitle"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_toEndOf="@+id/photoButton" />
+            <ImageView
+                android:id="@+id/ivPhoto"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/edtTitle"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_toEndOf="@+id/photoButton" />
 
-    <TextView
-        android:id="@+id/soundtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/phototext"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
-        android:text="음성"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/soundtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phototext"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="70dp"
+                android:text="음성"
+                android:textSize="20sp" />
 
 
-    <Button
-        android:id="@+id/soundButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@+id/photoButton"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@+id/soundtext"
-        android:background="@drawable/addsoundbtn" />
+            <Button
+                android:id="@+id/soundButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/photoButton"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/soundtext"
+                android:background="@drawable/addsoundbtn" />
 
-    <TextView
-        android:id="@+id/characteristicText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/soundtext"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
-        android:text="특성"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/characteristicText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/soundtext"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="70dp"
+                android:text="특성"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/edtContent"
-        android:layout_width="230dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/soundButton"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+            <EditText
+                android:id="@+id/edtContent"
+                android:layout_width="230dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/soundButton"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
 
-        android:layout_toEndOf="@+id/characteristicText"
-        android:background="@drawable/bigtf"
-        android:textSize="20sp"
-        tools:ignore="MissingConstraints" />
+                android:layout_toEndOf="@+id/characteristicText"
+                android:background="@drawable/bigtf"
+                android:textSize="20sp"
+                tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/btnEnd"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/edtContent"
-        android:layout_alignStart="@+id/imageView2"
+            <Button
+                android:id="@+id/btnEnd"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/edtContent"
+                android:layout_alignStart="@+id/imageView2"
 
-        android:layout_alignEnd="@+id/imageView2"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/endbtn"
-        tools:ignore="MissingConstraints" />
+                android:layout_alignEnd="@+id/imageView2"
+                android:layout_alignBottom="@+id/imageView2"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/endbtn"
+                tools:ignore="MissingConstraints" />
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
 
 </RelativeLayout>

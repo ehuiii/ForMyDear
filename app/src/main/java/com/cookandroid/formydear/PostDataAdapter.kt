@@ -34,6 +34,8 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
                 if(curPos != RecyclerView.NO_POSITION){
                     var intent = Intent(context, PostActivity::class.java).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.putExtra("UID", postData.uid)
+                    intent.putExtra("postTitle", postData.postTitle)
+                    intent.putExtra("postContent", postData.postContent)
                     intent.putExtra("categoryName", postData.categoryName)
                     intent.putExtra("IMGURL", postData.postPhotoUri)
                     context.startActivity(intent)

@@ -113,7 +113,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/tvSupname"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -140,7 +140,7 @@
     </Toolbar>
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvChildName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -170,7 +170,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/tvSex"
+        android:id="@+id/tvGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

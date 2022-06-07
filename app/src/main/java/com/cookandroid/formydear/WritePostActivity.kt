@@ -251,7 +251,7 @@ class WritePostActivity: AppCompatActivity()  {
                         hashMap.put("characteristic", strContent)
                         hashMap.put("timstamp", timestamp)
 
-                        mDatabaseRef.ref.child("PostData").child("${selectedItem}").push().setValue(hashMap)
+                        mDatabaseRef.ref.child("PostData").child("${selectedItem}").child("${mFirebaseAuth!!.currentUser!!.uid}").push().setValue(hashMap)
                                 .addOnCompleteListener {
                                     if(it.isSuccessful){
                                         Toast.makeText(this, "업로드", Toast.LENGTH_SHORT).show()
@@ -276,10 +276,10 @@ class WritePostActivity: AppCompatActivity()  {
                     hashMap.put("content", strContent)
                     hashMap.put("timestamp", timestamp)
 
-                    mDatabaseRef.ref.child("PostData").push().setValue(hashMap)
+                    mDatabaseRef.ref.child("PostData").child("${selectedItem}").child("${mFirebaseAuth!!.currentUser!!.uid}").push().setValue(hashMap)
 
                     Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
-                    var intent = Intent(this, PostActivity::class.java)
+                    var intent = Intent(this, PostListActivity::class.java)
                     intent.putExtra("SELECTED_ITEM", selectedItem)
                     startActivity(intent)
                     finish()

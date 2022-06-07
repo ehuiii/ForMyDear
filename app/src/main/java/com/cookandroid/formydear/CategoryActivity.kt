@@ -18,7 +18,7 @@ class CategoryActivity: AppCompatActivity() {
 
     private var categoryList = arrayListOf<CategoryData>(
         CategoryData("즐겨찾기", "imgstar"),
-        CategoryData("인사/예절", "imgmanner"),
+        CategoryData("인사 예절", "imgmanner"),
         CategoryData("감정", "imgemotion"),
         CategoryData("음식", "imgfood"),
         CategoryData("놀이", "imgplay"),

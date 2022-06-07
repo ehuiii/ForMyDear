@@ -3,12 +3,10 @@ package com.cookandroid.formydear
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -20,8 +18,9 @@ class GuardianmainActivity : AppCompatActivity() {
     private lateinit var btnEdit: Button
     lateinit var btnBack: Button
     private lateinit var tvName: TextView
+    private lateinit var tvChildName: TextView
     private lateinit var tvAge: TextView
-    private lateinit var tvSex: TextView
+    private lateinit var tvGender: TextView
     private lateinit var btnCategory: Button
     private lateinit var btnFaq: Button
     private lateinit var ivProfile: ImageView
@@ -41,8 +40,9 @@ class GuardianmainActivity : AppCompatActivity() {
         btnEdit = findViewById(R.id.btnEdit)
         btnBack = findViewById(R.id.btnBack)
         tvName = findViewById(R.id.tvName)
+        tvChildName = findViewById(R.id.tvChildName)
         tvAge = findViewById(R.id.tvAge)
-        tvSex = findViewById(R.id.tvSex)
+        tvGender = findViewById(R.id.tvGender)
         btnCategory = findViewById(R.id.btnCategory)
         btnFaq = findViewById(R.id.btnFaq)
         ivProfile = findViewById(R.id.ivProfile)
@@ -69,8 +69,9 @@ class GuardianmainActivity : AppCompatActivity() {
                 else {
                     var user: UserAccount? = snapshot.getValue(UserAccount::class.java)
 
-                    tvName.text = "${user?.userChildName}"
-
+                    tvChildName.text = "${user?.userChildName}"
+                    tvName.text = "${user?.userName}"
+                    tvGender.text = "${user?.userChildName}"
                     tvAge.text = "${user?.userChildAge}"
 
                     // 사진 url 추가 후 load하는 코드 넣을 자리

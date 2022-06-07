@@ -52,16 +52,20 @@ class PostActivity: AppCompatActivity() {
         //intent로 값 받아옴
         var intent: Intent = getIntent()
         var uid: String? = intent.getStringExtra("UID")
-        var title: String? = intent.getStringExtra("Title")
+        var title: String? = intent.getStringExtra("postTitle")
+        var content: String? = intent.getStringExtra("postContent")
         var img_url: String? = intent.getStringExtra("IMGURL")
 
         //화면에 받아온 값 출력
         tvTitle.setText(title.toString())
-        tvContent.setText(intent.getStringExtra("Content"))
-        tvHitsNum.setText(intent.getStringExtra("HitsNum"))
+        tvContent.setText(content.toString())
+        //tvHitsNum.setText(title.toString())
+        //tvTitle.setText(intent.getStringExtra("postTitle"))
+        //tvContent.setText(intent.getStringExtra("postContent"))
+        //tvHitsNum.setText(intent.getStringExtra("HitsNum"))
 
         if (img_url == null) {
-            ivPhoto.setImageResource(R.drawable.bg_5)
+            ivPhoto.setImageResource(R.drawable.man)
         } else {
             var cropOptions: RequestOptions = RequestOptions()
             Glide.with(applicationContext)
