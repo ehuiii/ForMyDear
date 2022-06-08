@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_category.*
 
@@ -29,7 +30,7 @@ class PostListActivity: AppCompatActivity()  {
     //파이어베이스
     private lateinit var database : FirebaseDatabase
     private lateinit var mDatabaseRef : DatabaseReference
-
+    private var mFirebaseAuth : FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +51,15 @@ class PostListActivity: AppCompatActivity()  {
 
         database = FirebaseDatabase.getInstance() //파이어베이스 데이터베이스 연동
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ForMyDear")
+        mFirebaseAuth = FirebaseAuth.getInstance()
+
 
         var intent : Intent = getIntent()
 
         var selectedItem : String? = intent.getStringExtra("SELECTED_ITEM")
 
         //리사이클러뷰에 담을 데이터 가져오기(selectedItem 태그를 통해서 보여줄 게시글 구분)
-        mDatabaseRef.child("PostData").child("$selectedItem")
+        mDatabaseRef.child("PostData").child("$selectedItem").child("${mFirebaseAuth!!.currentUser!!.uid}")
                 .orderByChild("timestamp").addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         arrayList.clear()

@@ -117,10 +117,10 @@ class RegisterActivity : AppCompatActivity() {
                         account.userName = strName
                         account.userChildName = strChildName
                         account.userPwd = strPwd
-                        //account.userPhotoUri=""
-                        //account.userChildGender=""
-                        //account.userChildRel=""
-                        //account.userChildChar=""
+                        account.userPhotoUri=""
+                        account.userChildGender=""
+                        account.userChildRel=""
+                        account.userChildChar=""
 
                         // setValue : database에 insert (삽입) 행위
                         mDatabaseRef.child(firebaseUser?.uid.toString())
@@ -129,7 +129,7 @@ class RegisterActivity : AppCompatActivity() {
 //                            Log.d("storage", "이미지 삭제완료")
 //                        }
 
-                        Toast.makeText(this, "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "$strName 님, 가입을 축하합니다", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                         finish() // 현재 액티비티 파괴

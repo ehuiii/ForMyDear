@@ -71,7 +71,7 @@ class GuardianmainActivity : AppCompatActivity() {
 
                     tvChildName.text = "${user?.userChildName}"
                     tvName.text = "${user?.userName}"
-                    tvGender.text = "${user?.userChildName}"
+                    tvGender.text = "${user?.userChildGender}"
                     tvAge.text = "${user?.userChildAge}"
 
                     // 사진 url 추가 후 load하는 코드 넣을 자리
