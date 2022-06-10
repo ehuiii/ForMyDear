@@ -44,8 +44,10 @@ class PostListActivity: AppCompatActivity()  {
         plusBtn = findViewById(R.id.plusBtn)
 
         rv_post.setHasFixedSize(true) //리사이클러뷰 성능 강화
-        val gridLayoutManager = GridLayoutManager(applicationContext, 3)
-        categoryRv.layoutManager = gridLayoutManager
+        layoutManager = GridLayoutManager(applicationContext, 3)
+        rv_post.layoutManager = GridLayoutManager(applicationContext, 3)
+        //val gridLayoutManager = GridLayoutManager(applicationContext, 3)
+        //categoryRv.layoutManager = gridLayoutManager
 
         arrayList = ArrayList<PostData>() //PostData 객체를 담을 ArrayList
 
@@ -59,7 +61,7 @@ class PostListActivity: AppCompatActivity()  {
         var selectedItem : String? = intent.getStringExtra("SELECTED_ITEM")
 
         //리사이클러뷰에 담을 데이터 가져오기(selectedItem 태그를 통해서 보여줄 게시글 구분)
-        mDatabaseRef.child("PostData").child("$selectedItem").child("${mFirebaseAuth!!.currentUser!!.uid}")
+        mDatabaseRef.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("$selectedItem")
                 .orderByChild("timestamp").addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         arrayList.clear()

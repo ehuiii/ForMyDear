@@ -117,11 +117,11 @@ class WritePostActivity: AppCompatActivity()  {
 
                         hashMap.put("imgUrl", downloadUrl.toString())
                         hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
-                        hashMap.put("title", strTitle)
-                        hashMap.put("characteristic", strContent)
-                        hashMap.put("timstamp", timestamp)
+                        hashMap.put("postTitle", strTitle)
+                        hashMap.put("postContent", strContent)
+                        hashMap.put("timestamp", timestamp)
 
-                        mDatabaseRef.ref.child("PostData").child("${selectedItem}").child("${mFirebaseAuth!!.currentUser!!.uid}").push().setValue(hashMap)
+                        mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").push().setValue(hashMap)
                                 .addOnCompleteListener {
                                     if(it.isSuccessful){
                                         Toast.makeText(this, "업로드", Toast.LENGTH_SHORT).show()
@@ -129,7 +129,7 @@ class WritePostActivity: AppCompatActivity()  {
                                 }
 
                         Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
-                        var intent = Intent(this, PostActivity::class.java)
+                        var intent = Intent(this, PostListActivity::class.java)
                         intent.putExtra("SELECTED_ITEM", selectedItem)
                         startActivity(intent)
                         finish()
@@ -142,11 +142,11 @@ class WritePostActivity: AppCompatActivity()  {
                     var strContent = edtContent.text.toString()
 
                     hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
-                    hashMap.put("title", strTitle)
-                    hashMap.put("content", strContent)
+                    hashMap.put("postTitle", strTitle)
+                    hashMap.put("postContent", strContent)
                     hashMap.put("timestamp", timestamp)
 
-                    mDatabaseRef.ref.child("PostData").child("${selectedItem}").child("${mFirebaseAuth!!.currentUser!!.uid}").push().setValue(hashMap)
+                    mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").push().setValue(hashMap)
 
                     Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
                     var intent = Intent(this, PostListActivity::class.java)

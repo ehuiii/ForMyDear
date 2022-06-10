@@ -47,11 +47,11 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
     //목록 아이템 뷰에 출력되는 값 설정
     override fun onBindViewHolder(holder: PostDataAdapter.CustomViewHolder, position: Int) {
 
-        if(postDataList.get(position).postPhotoUri == null){
+        if(postDataList[position].postPhotoUri == null){
             holder.image.setImageResource(R.drawable.man)
         }else{
             Glide.with(holder.itemView)
-                    .load(postDataList.get(position).postPhotoUri)
+                    .load(postDataList[position].postPhotoUri)
                     .into(holder.image)
         }
         //holder.content.text = postDataList.get(position).categoryName
