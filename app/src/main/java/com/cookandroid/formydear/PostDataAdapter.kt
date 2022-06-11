@@ -38,6 +38,9 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
                     intent.putExtra("postContent", postData.postContent)
                     intent.putExtra("categoryName", postData.categoryName)
                     intent.putExtra("IMGURL", postData.postPhotoUri)
+
+                    Log.d("hey",postData.postTitle)
+
                     context.startActivity(intent)
                 }
             }

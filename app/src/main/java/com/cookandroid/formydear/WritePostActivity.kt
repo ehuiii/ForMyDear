@@ -115,7 +115,7 @@ class WritePostActivity: AppCompatActivity()  {
                         var strTitle: String = edtTitle.text.toString()
                         var strContent = edtContent.text.toString()
 
-                        hashMap.put("imgUrl", downloadUrl.toString())
+                        hashMap.put("IMGURL", downloadUrl.toString())
                         hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
                         hashMap.put("postTitle", strTitle)
                         hashMap.put("postContent", strContent)
