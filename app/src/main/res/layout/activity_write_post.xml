@@ -21,6 +21,7 @@
             />
         <TextView
             android:id="@+id/writePostText"
+            android:paddingStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -41,7 +42,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="22dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/bg_5"
+
         tools:ignore="MissingConstraints">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,7 +52,6 @@
                 android:id="@+id/imageView2"
                 android:layout_width="350dp"
                 android:layout_height="600dp"
-
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/bg_5"
@@ -70,6 +70,7 @@
 
             <EditText
                 android:id="@+id/edtTitle"
+                android:paddingStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_alignTop="@+id/imageView2"
@@ -148,6 +149,7 @@
 
             <EditText
                 android:id="@+id/edtContent"
+                android:paddingStart="10dp"
                 android:layout_width="230dp"
                 android:layout_height="150dp"
                 android:layout_below="@+id/soundButton"

@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -37,12 +38,14 @@ class WritePostActivity: AppCompatActivity()  {
     lateinit var ivPhoto: ImageView
 
     var imgUrl : String = ""
+    var audUrl : String = ""
 
     private var mFirebaseAuth: FirebaseAuth? = null //파이어베이스 인증
     private lateinit var mDatabaseRef: DatabaseReference //실시간 데이터베이스
     private lateinit var fbStorage: FirebaseStorage
     private lateinit var storageRef: StorageReference
     private var GALLEY_CODE : Int = 10
+    private var AUDIO_CODE : Int = 20
 
     var timestamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
 
@@ -79,13 +82,20 @@ class WritePostActivity: AppCompatActivity()  {
             startActivityForResult(intent, GALLEY_CODE)
         }
 
+        soundButton.setOnClickListener(View.OnClickListener {
+                view: View? -> val intent = Intent()
+            intent.setType ("audio/*")
+            intent.setAction(Intent.ACTION_GET_CONTENT)
+            startActivityForResult(Intent.createChooser(intent, "Select Audio"), AUDIO_CODE)
+        })
+
         mDatabaseRef.child("UserAccount").child("${mFirebaseAuth!!.currentUser!!.uid}")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         //파이어베이스의 데이터를 가져옴
                         var user: UserAccount? = snapshot.getValue(UserAccount::class.java)
                         Log.d("택", "${user!!.userId.toString()}")
-                    }
+    }
 
                     override fun onCancelled(error: DatabaseError) {
                         Log.d("Tag", "Failed")
@@ -96,15 +106,20 @@ class WritePostActivity: AppCompatActivity()  {
             try {
                 var storageReference : StorageReference = fbStorage.getReference()
 
-                var file : Uri = Uri.fromFile(File(imgUrl))
-                var riversRef : StorageReference = storageReference.child("images/"+file.lastPathSegment)
-                var uploadTask : UploadTask = riversRef.putFile(file)
+                var imgfile : Uri = Uri.fromFile(File(imgUrl))
+                var audfile : Uri = Uri.fromFile(File(audUrl))
+                var riversRefI : StorageReference = storageReference.child("images/"+imgfile.lastPathSegment)
+                var uploadTaskI : UploadTask = riversRefI.putFile(imgfile)
+                var riversRefA : StorageReference = storageReference.child("audio/"+audfile.lastPathSegment)
+                var uploadTaskA : UploadTask = riversRefA.putFile(audfile)
 
-                var urlTask : Task<Uri> = uploadTask.continueWithTask(Continuation {
+
+
+                var urlTask : Task<Uri> = uploadTaskI.continueWithTask (Continuation {
                     if(!it.isSuccessful){
                         it.exception
                     }
-                    riversRef.downloadUrl
+                    riversRefI.downloadUrl
                 }).addOnCompleteListener {
                     if(it.isSuccessful)
                     {
@@ -176,12 +191,15 @@ class WritePostActivity: AppCompatActivity()  {
             imgUrl = getRealPathFromUri(data!!.data)
             var cropOptions : RequestOptions = RequestOptions()
             Glide.with(applicationContext)
-                    .load(imgUrl)
-                    .into(ivPhoto)
+                .load(imgUrl)
+                .apply(cropOptions.centerCrop())
+                .into(ivPhoto)
 
             super.onActivityResult(requestCode, resultCode, data)
         }
+
     }
+
 
 
 

@@ -36,11 +36,11 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="180dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="180dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="10dp"
-            android:text="제목"
+            android:text="제목제목"
             android:textSize="22sp"
             android:gravity="center"/>
 
@@ -105,12 +105,15 @@
 
     <TextView
         android:id="@+id/tvContent"
+        android:paddingStart="10dp"
         android:layout_width="400dp"
         android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="15sp"
+        android:layout_marginTop="15dp"
         android:text="컴퓨터와 텔레비전을 계속 헷갈려한다.\n확실하게 알 수 있게 2주간 즐겨찾기를 해둬야겠다."
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivStar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
