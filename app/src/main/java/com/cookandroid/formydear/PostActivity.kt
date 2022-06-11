@@ -54,7 +54,7 @@ class PostActivity: AppCompatActivity() {
         var uid: String? = intent.getStringExtra("UID")
         var title: String? = intent.getStringExtra("postTitle")
         var content: String? = intent.getStringExtra("postContent")
-        var img_url: String? = intent.getStringExtra("IMGURL")
+        var postPhotoUri: String? = intent.getStringExtra("postPhotoUri")
 
         //화면에 받아온 값 출력
         tvTitle.setText(title.toString())
@@ -64,12 +64,12 @@ class PostActivity: AppCompatActivity() {
         //tvContent.setText(intent.getStringExtra("postContent"))
         //tvHitsNum.setText(intent.getStringExtra("HitsNum"))
 
-        if (img_url == null) {
+        if (postPhotoUri == null) {
             ivPhoto.setImageResource(R.drawable.man)
         } else {
             var cropOptions: RequestOptions = RequestOptions()
             Glide.with(applicationContext)
-                    .load(img_url)
+                    .load(postPhotoUri)
                     .apply(cropOptions.optionalCircleCrop())
                     .into(ivPhoto)
         }
