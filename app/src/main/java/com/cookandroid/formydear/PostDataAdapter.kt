@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlin.collections.ArrayList
 
 /*게시글 상세 화면 리싸이클러뷰에 연결하는 adapter*/
@@ -53,8 +54,10 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
         if(postDataList[position].postPhotoUri == null){
             holder.image.setImageResource(R.drawable.man)
         }else{
+            var cropOptions: RequestOptions = RequestOptions()
             Glide.with(holder.itemView)
                     .load(postDataList[position].postPhotoUri)
+                    .apply(cropOptions.centerCrop())
                     .into(holder.image)
         }
         //holder.content.text = postDataList.get(position).categoryName

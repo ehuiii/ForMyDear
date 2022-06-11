@@ -70,7 +70,7 @@ class PostActivity: AppCompatActivity() {
             var cropOptions: RequestOptions = RequestOptions()
             Glide.with(applicationContext)
                     .load(postPhotoUri)
-                    .apply(cropOptions.optionalCircleCrop())
+                    .apply(cropOptions.centerCrop())
                     .into(ivPhoto)
         }
 

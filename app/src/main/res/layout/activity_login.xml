@@ -24,6 +24,7 @@
 
     <EditText
         android:id="@+id/etEmail"
+        android:text="fomd@swu.ac.kr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
@@ -40,6 +41,7 @@
 
     <EditText
         android:id="@+id/etPwd"
+        android:text="123456"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
