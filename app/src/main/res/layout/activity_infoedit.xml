@@ -55,7 +55,7 @@
             // 이미지 등록
 
             <ImageView
-                android:id="@+id/imgMan"
+                android:id="@+id/imgProfile"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:layout_marginStart="5dp"
@@ -83,7 +83,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.528"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgMan"
+                app:layout_constraintTop_toBottomOf="@+id/imgProfile"
                 tools:ignore="MissingConstraints" />
 
 
@@ -127,7 +127,6 @@
                 android:layout_marginTop="204dp"
                 android:background="@drawable/longtf"
                 android:inputType="textPersonName"
-                android:textAlignment="center"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@+id/btnGirl"
                 app:layout_constraintHorizontal_bias="0.966"
@@ -226,6 +225,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/edtAge"
                 tools:ignore="MissingConstraints" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tvGenderInfo"
+                android:visibility="gone"/>
 
             //관계
 
@@ -249,12 +253,12 @@
 
             <EditText
                 android:id="@+id/edtRelation"
+                android:paddingStart="10dp"
                 android:layout_width="233dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="116dp"
                 android:layout_marginTop="56dp"
                 android:background="@drawable/longtf"
-                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -265,11 +269,9 @@
 
             <TextView
                 android:id="@+id/edtAttribte"
-                android:paddingStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@android:color/transparent"
                 android:text="특성"
                 android:textColor="#000000"
                 android:textSize="17sp"
@@ -282,7 +284,7 @@
             //편집 완료
 
             <EditText
-                android:id="@+id/edtAttribute"
+                android:id="@+id/edtChildChar"
                 android:layout_width="230dp"
                 android:layout_height="150dp"
                 android:paddingStart="10dp"
@@ -308,7 +310,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtAttribute"
+                app:layout_constraintTop_toBottomOf="@+id/edtChildChar"
                 tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

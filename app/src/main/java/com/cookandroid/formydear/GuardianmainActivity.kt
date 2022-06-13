@@ -42,7 +42,7 @@ class GuardianmainActivity : AppCompatActivity() {
         tvName = findViewById(R.id.tvName)
         tvChildName = findViewById(R.id.tvChildName)
         tvAge = findViewById(R.id.tvAge)
-        tvGender = findViewById(R.id.tvGender)
+        tvGender = findViewById(R.id.tvGenderInfo)
         btnCategory = findViewById(R.id.btnCategory)
         btnFaq = findViewById(R.id.btnFaq)
         ivProfile = findViewById(R.id.ivProfile)
