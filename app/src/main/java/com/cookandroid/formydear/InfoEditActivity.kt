@@ -104,15 +104,14 @@ class InfoEditActivity : AppCompatActivity() {
                 edtChildChar.setText("${user!!.userChildChar.toString()}")
                 edtAge.setText("${user!!.userChildAge.toString()}")
 
-                if(user!!.userChildGender.equals("")){
-                    btnGirl.isSelected = false
-                    btnBoy.isSelected = false
-                }else if(user!!.userChildGender.equals("남아")){
+                if(user!!.userChildGender == "남아"){
                     btnBoy.isSelected = btnBoy.isSelected != true
                     btnGirl.isSelected = false
+                    tvGenderInfo.text = "남아"
                 }else{
                     btnGirl.isSelected = btnGirl.isSelected != true
                     btnBoy.isSelected = false
+                    tvGenderInfo.text = "여아"
                 }
 
                 if(user!!.userPhotoUri.equals("")){
@@ -134,7 +133,7 @@ class InfoEditActivity : AppCompatActivity() {
 
 
 
-        // 사진 편집 - 갤러리 들어가기
+        //사진 업로드 버튼
         btnEdtimg.setOnClickListener {
             //앨범 열기
             var intent = Intent(Intent.ACTION_PICK)
@@ -272,6 +271,10 @@ class InfoEditActivity : AppCompatActivity() {
                                     hashMap.put("userChildGender", strGender)
                                     hashMap.put("userChildName", strName)
                                     hashMap.put("userChildRel", strRelation)
+                                    hashMap.put("userName",user!!.userName.toString())
+                                    hashMap.put("userEmail",user!!.userEmail.toString())
+                                    hashMap.put("userId", user!!.userId.toString())
+                                    hashMap.put("userPwd", user!!.userPwd.toString())
 
 
                                     mDatabaseRef.child("UserAccount")
@@ -309,11 +312,16 @@ class InfoEditActivity : AppCompatActivity() {
 
                                 val hashMap : HashMap<String, String> = HashMap()
 
+                                hashMap.put("userPhotoUri", user!!.userPhotoUri.toString())
                                 hashMap.put("userChildAge", strAge)
                                 hashMap.put("userChildChar",strChildChar)
                                 hashMap.put("userChildGender", strGender)
                                 hashMap.put("userChildName", strName)
                                 hashMap.put("userChildRel", strRelation)
+                                hashMap.put("userName",user!!.userName.toString())
+                                hashMap.put("userEmail",user!!.userEmail.toString())
+                                hashMap.put("userId", user!!.userId.toString())
+                                hashMap.put("userPwd", user!!.userPwd.toString())
 
                                 mDatabaseRef.child("UserAccount")
                                     .child("${mFirebaseAuth?.currentUser!!.uid}").setValue(hashMap)

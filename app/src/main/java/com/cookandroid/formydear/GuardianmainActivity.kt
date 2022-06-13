@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -74,12 +75,15 @@ class GuardianmainActivity : AppCompatActivity() {
                     tvGender.text = "${user?.userChildGender}"
                     tvAge.text = "${user?.userChildAge}"
 
-                    // 사진 url 추가 후 load하는 코드 넣을 자리
+                    var cropOptions : RequestOptions = RequestOptions()
+                    // 사진 url 추가 후 load하는 코드
                     if (user!!.userPhotoUri == "") {
                         ivProfile.setImageResource(R.drawable.man)
+
                     } else { // userPhotoUri가 있으면 그 사진 로드하기
-                        Glide.with(activitys)
+                        Glide.with(applicationContext)
                                 .load(user!!.userPhotoUri)
+                                .apply(cropOptions.optionalCircleCrop())
                                 .into(ivProfile)
                     }
                 }

@@ -20,7 +20,7 @@ class PostActivity: AppCompatActivity() {
 
     //위젯 연결할 변수 선언
     lateinit var tvTitle : TextView
-    lateinit var btnEdit : Button
+    lateinit var btnEdit : TextView
     lateinit var tvContent : TextView
     lateinit var tvHitsNum : TextView
     lateinit var ivPhoto : ImageView
