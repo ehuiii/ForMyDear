@@ -38,7 +38,7 @@ class GuardianmainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guardianmain)
 
-        btnEdit = findViewById(R.id.btnEdit)
+        btnEdit = findViewById(R.id.btnChildcare)
         btnBack = findViewById(R.id.btnBack)
         tvName = findViewById(R.id.tvName)
         tvChildName = findViewById(R.id.tvChildName)
