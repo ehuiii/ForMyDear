@@ -1,6 +1,9 @@
 package com.cookandroid.formydear
 
 import android.content.Intent
+import android.media.AudioManager
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -26,6 +29,7 @@ class PostActivity: AppCompatActivity() {
     lateinit var ivPhoto : ImageView
     lateinit var ivStar : ImageView
     lateinit var btnBack : Button
+    lateinit var btnSound : Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +41,7 @@ class PostActivity: AppCompatActivity() {
         tvContent = findViewById(R.id.tvContent)
         btnEdit = findViewById(R.id.btnEdit)
         btnBack = findViewById(R.id.btnBack)
+        btnSound = findViewById(R.id.btnSound)
         tvHitsNum = findViewById(R.id.tvHitsNum)
         ivPhoto = findViewById(R.id.ivPhoto)
         ivStar = findViewById(R.id.ivStar)
@@ -55,14 +60,12 @@ class PostActivity: AppCompatActivity() {
         var title: String? = intent.getStringExtra("postTitle")
         var content: String? = intent.getStringExtra("postContent")
         var postPhotoUri: String? = intent.getStringExtra("postPhotoUri")
+        var postAudioUri: String? = intent.getStringExtra("postAudioUri")
 
         //화면에 받아온 값 출력
         tvTitle.setText(title.toString())
         tvContent.setText(content.toString())
-        //tvHitsNum.setText(title.toString())
-        //tvTitle.setText(intent.getStringExtra("postTitle"))
-        //tvContent.setText(intent.getStringExtra("postContent"))
-        //tvHitsNum.setText(intent.getStringExtra("HitsNum"))
+
 
         if (postPhotoUri == null) {
             ivPhoto.setImageResource(R.drawable.man)
@@ -72,6 +75,17 @@ class PostActivity: AppCompatActivity() {
                     .load(postPhotoUri)
                     .apply(cropOptions.centerCrop())
                     .into(ivPhoto)
+        }
+
+        btnSound.setOnClickListener{
+            val url = postAudioUri // your URL here
+            val mediaPlayer: MediaPlayer? = MediaPlayer().apply {
+                setAudioStreamType(AudioManager.STREAM_MUSIC)
+                setDataSource(url)
+                prepare() // might take long! (for buffering, etc)
+                start()
+            }
+
         }
 
         btnBack.setOnClickListener{

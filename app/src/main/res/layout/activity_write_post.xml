@@ -127,7 +127,7 @@
 
 
             <Button
-                android:id="@+id/soundButton"
+                android:id="@+id/btnSound"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_below="@+id/photoButton"
@@ -152,7 +152,7 @@
                 android:paddingStart="10dp"
                 android:layout_width="230dp"
                 android:layout_height="150dp"
-                android:layout_below="@+id/soundButton"
+                android:layout_below="@+id/btnSound"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
 

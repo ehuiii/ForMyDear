@@ -81,6 +81,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivPhoto" />
 
+    <Button
+        android:id="@+id/btnSound"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivStar"
+        android:background="@drawable/soundbtn" />
+
     <TextView
         android:id="@+id/tvHits"
         android:visibility="invisible"
@@ -108,15 +118,15 @@
 
     <TextView
         android:id="@+id/tvContent"
-        android:paddingStart="10dp"
         android:layout_width="400dp"
         android:layout_height="200dp"
         android:layout_marginTop="15dp"
+        android:paddingStart="10dp"
         android:text="컴퓨터와 텔레비전을 계속 헷갈려한다.\n확실하게 알 수 있게 2주간 즐겨찾기를 해둬야겠다."
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivStar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSound" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -68,7 +67,7 @@ class WritePostActivity: AppCompatActivity()  {
 
         btnBack = findViewById(R.id.btnBack)
         photoButton = findViewById(R.id.photoButton)
-        soundButton = findViewById(R.id.soundButton)
+        soundButton = findViewById(R.id.btnSound)
         btnEnd = findViewById(R.id.btnEnd)
         edtTitle = findViewById(R.id.edtTitle)
         edtContent = findViewById(R.id.edtContent)
@@ -89,13 +88,6 @@ class WritePostActivity: AppCompatActivity()  {
             startActivityForResult(intent, AUDIO_CODE)
         }
 
-
-//        soundButton.setOnClickListener(View.OnClickListener {
-//                view: View? -> val intent = Intent()
-//            intent.setType ("audio/*")
-//            intent.setAction(Intent.ACTION_GET_CONTENT)
-//            startActivityForResult(Intent.createChooser(intent, "Select Audio"), AUDIO_CODE)
-//        })
 
         mDatabaseRef.child("UserAccount").child("${mFirebaseAuth!!.currentUser!!.uid}")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -123,6 +115,21 @@ class WritePostActivity: AppCompatActivity()  {
 
                 var downloadAudioUrl : String = ""
 
+                var urlTaskA : Task<Uri> = uploadTaskA.continueWithTask (Continuation {
+                    if(!it.isSuccessful){
+                        it.exception
+                    }
+                    riversRefA.downloadUrl
+                }).addOnCompleteListener {
+                    if(it.isSuccessful)
+                    {
+                        val downloadUrl : Uri? = it.result
+                        downloadAudioUrl = downloadUrl.toString()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this, "오디오 업로드 실패", Toast.LENGTH_SHORT).show()
+                }
+
                 var urlTask : Task<Uri> = uploadTaskI.continueWithTask (Continuation {
                     if(!it.isSuccessful){
                         it.exception
@@ -131,22 +138,6 @@ class WritePostActivity: AppCompatActivity()  {
                 }).addOnCompleteListener {
                     if(it.isSuccessful)
                     {
-                        var urlTaskA : Task<Uri> = uploadTaskA.continueWithTask (Continuation {
-                            if(!it.isSuccessful){
-                                it.exception
-                            }
-                            riversRefA.downloadUrl
-                        }).addOnCompleteListener {
-                            if(it.isSuccessful)
-                            {
-                                val downloadUrl : Uri? = it.result
-                                downloadAudioUrl = downloadUrl.toString()
-                            }
-                        }.addOnFailureListener {
-                            Toast.makeText(this, "오디오 업로드 실패", Toast.LENGTH_SHORT).show()
-                        }
-
-
                         var downloadUrl : Uri? = it.result
 
                         val hashMap : HashMap<String, String> = HashMap()
@@ -182,7 +173,7 @@ class WritePostActivity: AppCompatActivity()  {
                     var strContent = edtContent.text.toString()
 
                     hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
-                    hashMap.put("postAudioUri", riversRefA.toString())
+                    hashMap.put("postAudioUri", downloadAudioUrl)
                     hashMap.put("postTitle", strTitle)
                     hashMap.put("postContent", strContent)
                     hashMap.put("timestamp", timestamp)
