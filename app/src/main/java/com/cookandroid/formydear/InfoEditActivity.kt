@@ -45,6 +45,7 @@ class InfoEditActivity : AppCompatActivity() {
     lateinit var imgProfile: ImageView
     lateinit var spinnerAge: Spinner
     lateinit var tvGenderInfo: TextView
+    lateinit var btnLogout: TextView
 
 
     //파이어베이스
@@ -88,6 +89,7 @@ class InfoEditActivity : AppCompatActivity() {
         spinnerAge = findViewById(R.id.spinnerAge)
         edtAge = findViewById(R.id.edtAge)
         tvGenderInfo = findViewById(R.id.tvGenderInfo)
+        btnLogout = findViewById(R.id.btnLogout)
 
         //사용자의 이름, 닉네임, 전화번호 기본 출력 (이름, 닉네임은 수정 불가능)
         mDatabaseRef.child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}").addValueEventListener(object :
@@ -216,6 +218,13 @@ class InfoEditActivity : AppCompatActivity() {
             btnGirl.isSelected = btnGirl.isSelected != true
             btnBoy.isSelected = false
             tvGenderInfo.text = "여아"
+        }
+        //로그아웃 버튼
+        btnLogout.setOnClickListener {
+
+            mFirebaseAuth!!.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
 

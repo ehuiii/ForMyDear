@@ -314,12 +314,15 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
+                android:id="@+id/btnLogout"
+                style="@style/HyperLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="50dp"
                 android:text="로그아웃"
                 android:textSize="15sp"
-                style="@style/HyperLink"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/infoeditbg" />

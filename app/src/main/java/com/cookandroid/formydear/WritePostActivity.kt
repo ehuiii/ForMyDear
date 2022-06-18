@@ -81,13 +81,21 @@ class WritePostActivity: AppCompatActivity()  {
 
             startActivityForResult(intent, GALLEY_CODE)
         }
+        soundButton.setOnClickListener {
+            //앨범 열기
+            var intent = Intent(Intent.ACTION_PICK)
+            intent.setType(MediaStore.Audio.Media.CONTENT_TYPE)
 
-        soundButton.setOnClickListener(View.OnClickListener {
-                view: View? -> val intent = Intent()
-            intent.setType ("audio/*")
-            intent.setAction(Intent.ACTION_GET_CONTENT)
-            startActivityForResult(Intent.createChooser(intent, "Select Audio"), AUDIO_CODE)
-        })
+            startActivityForResult(intent, AUDIO_CODE)
+        }
+
+
+//        soundButton.setOnClickListener(View.OnClickListener {
+//                view: View? -> val intent = Intent()
+//            intent.setType ("audio/*")
+//            intent.setAction(Intent.ACTION_GET_CONTENT)
+//            startActivityForResult(Intent.createChooser(intent, "Select Audio"), AUDIO_CODE)
+//        })
 
         mDatabaseRef.child("UserAccount").child("${mFirebaseAuth!!.currentUser!!.uid}")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -113,7 +121,7 @@ class WritePostActivity: AppCompatActivity()  {
                 var riversRefA : StorageReference = storageReference.child("audio/"+audfile.lastPathSegment)
                 var uploadTaskA : UploadTask = riversRefA.putFile(audfile)
 
-
+                var downloadAudioUrl : String = ""
 
                 var urlTask : Task<Uri> = uploadTaskI.continueWithTask (Continuation {
                     if(!it.isSuccessful){
@@ -123,6 +131,22 @@ class WritePostActivity: AppCompatActivity()  {
                 }).addOnCompleteListener {
                     if(it.isSuccessful)
                     {
+                        var urlTaskA : Task<Uri> = uploadTaskA.continueWithTask (Continuation {
+                            if(!it.isSuccessful){
+                                it.exception
+                            }
+                            riversRefA.downloadUrl
+                        }).addOnCompleteListener {
+                            if(it.isSuccessful)
+                            {
+                                val downloadUrl : Uri? = it.result
+                                downloadAudioUrl = downloadUrl.toString()
+                            }
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "오디오 업로드 실패", Toast.LENGTH_SHORT).show()
+                        }
+
+
                         var downloadUrl : Uri? = it.result
 
                         val hashMap : HashMap<String, String> = HashMap()
@@ -131,6 +155,7 @@ class WritePostActivity: AppCompatActivity()  {
                         var strContent = edtContent.text.toString()
 
                         hashMap.put("postPhotoUri", downloadUrl.toString())
+                        hashMap.put("postAudioUri", downloadAudioUrl)
                         hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
                         hashMap.put("postTitle", strTitle)
                         hashMap.put("postContent", strContent)
@@ -157,6 +182,7 @@ class WritePostActivity: AppCompatActivity()  {
                     var strContent = edtContent.text.toString()
 
                     hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
+                    hashMap.put("postAudioUri", riversRefA.toString())
                     hashMap.put("postTitle", strTitle)
                     hashMap.put("postContent", strContent)
                     hashMap.put("timestamp", timestamp)
@@ -170,6 +196,10 @@ class WritePostActivity: AppCompatActivity()  {
                     finish()
 
                 }
+
+
+
+
             }catch (e : NullPointerException){
                 Toast.makeText(this, "이미지 선택 안함", Toast.LENGTH_SHORT).show();
             }
@@ -182,34 +212,41 @@ class WritePostActivity: AppCompatActivity()  {
     }
 
 
-
-
-    //이미지 받아와서 화면에 출력
+    //이미지 받아와서 화면에 출력, 오디오 받아오는 코드
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (requestCode == GALLEY_CODE) {
             imgUrl = getRealPathFromUri(data!!.data)
             var cropOptions : RequestOptions = RequestOptions()
             Glide.with(applicationContext)
-                .load(imgUrl)
-                .apply(cropOptions.centerCrop())
-                .into(ivPhoto)
-
-            super.onActivityResult(requestCode, resultCode, data)
+                    .load(imgUrl)
+                    .apply(cropOptions.centerCrop())
+                    .into(ivPhoto)
+        }else if (requestCode == AUDIO_CODE) {
+            audUrl = getRealPathFromUriA(data!!.data)
         }
-
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
-
-
-
-    //절대경로 받아오기
+    //이미지 절대경로 받아오기
     private fun getRealPathFromUri(uri: Uri?) : String{
         var proj : Array<String> = arrayOf(MediaStore.Images.Media.DATA)
         var cursorLoader : CursorLoader = CursorLoader(this,uri!!,proj,null,null,null)
         var cursor : Cursor? = cursorLoader.loadInBackground()
 
         var columIndex : Int = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        cursor.moveToFirst()
+        var url : String = cursor.getString(columIndex)
+        cursor.close()
+        return url
+    }
+    //오디오 절대경로 받아오기
+    private fun getRealPathFromUriA(uri: Uri?) : String{
+        var proj : Array<String> = arrayOf(MediaStore.Audio.Media.DATA)
+        var cursorLoader : CursorLoader = CursorLoader(this,uri!!,proj,null,null,null)
+        var cursor : Cursor? = cursorLoader.loadInBackground()
+
+        var columIndex : Int = cursor!!.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
         cursor.moveToFirst()
         var url : String = cursor.getString(columIndex)
         cursor.close()

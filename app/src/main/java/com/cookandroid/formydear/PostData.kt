@@ -5,6 +5,7 @@ data class PostData(
         var uid : String? = null,
         var categoryName:String="",
         var postPhotoUri:String="",
+        var postAudioUri:String="",
         var postId: String ="",
         var postTitle: String ="",
         var postHits: String ="",
