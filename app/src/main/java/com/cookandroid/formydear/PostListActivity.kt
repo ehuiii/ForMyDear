@@ -46,8 +46,7 @@ class PostListActivity: AppCompatActivity()  {
         rv_post.setHasFixedSize(true) //리사이클러뷰 성능 강화
         layoutManager = GridLayoutManager(applicationContext, 3)
         rv_post.layoutManager = GridLayoutManager(applicationContext, 3)
-        //val gridLayoutManager = GridLayoutManager(applicationContext, 3)
-        //categoryRv.layoutManager = gridLayoutManager
+
 
         arrayList = ArrayList<PostData>() //PostData 객체를 담을 ArrayList
 
@@ -94,12 +93,6 @@ class PostListActivity: AppCompatActivity()  {
             intent.putExtra("SELECTED_ITEM", selectedItem)
             startActivity(intent)
         }
-
-
-
-
-
-
     }
 /*
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

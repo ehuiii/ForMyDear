@@ -50,10 +50,6 @@ class PostActivity: AppCompatActivity() {
         mFirebaseAuth = FirebaseAuth.getInstance()
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ForMyDear")
 
-
-        //var user_nickname: String = ""
-        //var post_profileImg: String = ""
-
         //intent로 값 받아옴
         var intent: Intent = getIntent()
         var uid: String? = intent.getStringExtra("UID")
