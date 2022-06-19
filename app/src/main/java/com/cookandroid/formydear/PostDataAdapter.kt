@@ -40,6 +40,8 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
                     intent.putExtra("categoryName", postData.categoryName)
                     intent.putExtra("postPhotoUri", postData.postPhotoUri)
                     intent.putExtra("postAudioUri", postData.postAudioUri)
+                    intent.putExtra("postId", postData.postId)
+                    intent.putExtra("star", postData.star)
 
                     Log.d("hey",postData.postTitle)
 

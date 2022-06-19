@@ -38,6 +38,7 @@ class WritePostActivity: AppCompatActivity()  {
 
     var imgUrl : String = ""
     var audUrl : String = ""
+    var postId: String = ""
 
     private var mFirebaseAuth: FirebaseAuth? = null //파이어베이스 인증
     private lateinit var mDatabaseRef: DatabaseReference //실시간 데이터베이스
@@ -72,6 +73,8 @@ class WritePostActivity: AppCompatActivity()  {
         edtTitle = findViewById(R.id.edtTitle)
         edtContent = findViewById(R.id.edtContent)
         ivPhoto = findViewById(R.id.ivPhoto)
+
+        postId = mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").push().key.toString()
 
         photoButton.setOnClickListener {
             //앨범 열기
@@ -140,19 +143,23 @@ class WritePostActivity: AppCompatActivity()  {
                     {
                         var downloadUrl : Uri? = it.result
 
-                        val hashMap : HashMap<String, String> = HashMap()
+                        val hashMap : HashMap<String, Any> = HashMap()
 
                         var strTitle: String = edtTitle.text.toString()
                         var strContent = edtContent.text.toString()
+                        var strPostId: String = postId
 
+                        hashMap.put("postId", strPostId)
                         hashMap.put("postPhotoUri", downloadUrl.toString())
                         hashMap.put("postAudioUri", downloadAudioUrl)
                         hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
                         hashMap.put("postTitle", strTitle)
                         hashMap.put("postContent", strContent)
+                        hashMap.put("categoryName", selectedItem.toString())
                         hashMap.put("timestamp", timestamp)
+                        hashMap.put("star", 1)
 
-                        mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").push().setValue(hashMap)
+                        mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").child(postId).setValue(hashMap)
                                 .addOnCompleteListener {
                                     if(it.isSuccessful){
                                         Toast.makeText(this, "업로드", Toast.LENGTH_SHORT).show()
@@ -167,7 +174,7 @@ class WritePostActivity: AppCompatActivity()  {
                     }
                 }.addOnFailureListener {
 
-                    val hashMap : HashMap<String, String> = HashMap()
+                    val hashMap : HashMap<String, Any> = HashMap()
 
                     var strTitle: String = edtTitle.text.toString()
                     var strContent = edtContent.text.toString()
@@ -177,8 +184,9 @@ class WritePostActivity: AppCompatActivity()  {
                     hashMap.put("postTitle", strTitle)
                     hashMap.put("postContent", strContent)
                     hashMap.put("timestamp", timestamp)
+                    hashMap.put("star", 1)
 
-                    mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").push().setValue(hashMap)
+                    mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").child(postId).setValue(hashMap)
 
                     Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
                     var intent = Intent(this, PostListActivity::class.java)
