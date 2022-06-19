@@ -13,6 +13,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 //import com.google.firebase.database.R
 
@@ -31,6 +35,9 @@ class PostActivity: AppCompatActivity() {
     lateinit var ivStar : ImageView
     lateinit var btnBack : Button
     lateinit var btnSound : Button
+    lateinit var arrayList: ArrayList<PostData>
+
+    var timestamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +57,8 @@ class PostActivity: AppCompatActivity() {
         //파이어베이스 계정, 리얼타임 데이터베이스
         mFirebaseAuth = FirebaseAuth.getInstance()
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ForMyDear")
+
+        arrayList = ArrayList<PostData>() //PostData 객체를 담을 ArrayList
 
         //intent로 값 받아옴
         var intent: Intent = getIntent()
@@ -82,36 +91,17 @@ class PostActivity: AppCompatActivity() {
                 ivStar.setImageResource(R.drawable.imgstar)
                 star = 0
                 starEvent(1)
+                addStarEvent(1)
             }else{
                 ivStar.setImageResource(R.drawable.imgstar_empty)
                 star = 1
                 starEvent(0)
+                addStarEvent(0)
             }
 
 
         }
-/*
-        mDatabaseRef.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").child("${postId.toString()}")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    //파이어베이스의 데이터를 가져옴
-                    var post: PostData? = snapshot.getValue(PostData::class.java)
-                    Log.d("택", "${post!!.postId.toString()}")
-                    /*
-                    if (post!!.star == 1) {
-                        ivStar.setImageResource(R.drawable.imgstar_empty)
-                    } else if (post!!.star == 0) {
-                        ivStar.setImageResource(R.drawable.imgstar)
-                    }*/
-                    ivStar.setOnClickListener {
-                        starEvent(post!!)
-                    }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.d("Tag", "Failed")
-                }
-            })*/
 
         if (postPhotoUri == null) {
             ivPhoto.setImageResource(R.drawable.man)
@@ -161,5 +151,44 @@ class PostActivity: AppCompatActivity() {
         mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").child("${postId}").updateChildren(
             hashMap
         )
+
+
+    }
+
+    private fun addStarEvent(starData: Int){
+        Log.d("별", "즐겨찾기에 추가")
+        var star:Int?
+
+        var intent: Intent = getIntent()
+        var uid: String? = intent.getStringExtra("UID")
+        var title: String? = intent.getStringExtra("postTitle")
+        var content: String? = intent.getStringExtra("postContent")
+        var postPhotoUri: String? = intent.getStringExtra("postPhotoUri")
+        var postAudioUri: String? = intent.getStringExtra("postAudioUri")
+        var postId: String? = intent.getStringExtra("postId")
+        var selectedItem: String? = intent.getStringExtra("categoryName")
+        //var star: Int? = intent.getIntExtra("star", 0)
+
+        if(starData==1){//별이 비어있는데 클릭된경우
+            star=0
+            val hashMap: HashMap<String, Any> = HashMap()
+            hashMap.put("star", star)
+            hashMap.put("postId", postId.toString())
+            hashMap.put("postPhotoUri", postPhotoUri.toString())
+            hashMap.put("postAudioUri", postAudioUri.toString())
+            hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
+            hashMap.put("postTitle", title.toString())
+            hashMap.put("postContent", content.toString())
+            hashMap.put("categoryName", selectedItem.toString())
+            hashMap.put("timestamp", timestamp)
+            mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("즐겨찾기").child("${postId}").setValue(hashMap)
+
+        }else{
+            star=1
+            mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("즐겨찾기").child("${postId}").removeValue()
+
+        }
+
+
     }
 }

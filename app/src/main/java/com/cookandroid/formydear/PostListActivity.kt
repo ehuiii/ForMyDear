@@ -94,22 +94,5 @@ class PostListActivity: AppCompatActivity()  {
             startActivity(intent)
         }
     }
-/*
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        var mInflater = menuInflater
-        mInflater.inflate(R.menu.plus, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId){
-            R.id.action_plus ->{
-                //게시글 쓰기 화면 이동
-
-                return super.onOptionsItemSelected(item)
-            }
-            else-> return super.onOptionsItemSelected(item)
-        }
-    }*/
 }
