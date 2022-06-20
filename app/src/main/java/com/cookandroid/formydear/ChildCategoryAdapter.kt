@@ -5,18 +5,16 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
-
-class CategoryAdapter(val context: Context, val viewDataList: ArrayList<CategoryData>) : RecyclerView.Adapter<CategoryAdapter.CustomViewHolder>(){
+class ChildCategoryAdapter(val context: Context, val viewDataList: ArrayList<CategoryData>) : RecyclerView.Adapter<ChildCategoryAdapter.CustomViewHolder>(){
 
     var mPositon = 0
     fun getPosition(): Int{
@@ -75,7 +73,7 @@ class CategoryAdapter(val context: Context, val viewDataList: ArrayList<Category
     }
 
 
-    override fun onBindViewHolder(holder: CategoryAdapter.CustomViewHolder, position: Int){
+    override fun onBindViewHolder(holder: ChildCategoryAdapter.CustomViewHolder, position: Int){
         holder.bind(viewDataList[position], context)
 
         holder.itemView.setOnClickListener{ view ->
@@ -84,17 +82,9 @@ class CategoryAdapter(val context: Context, val viewDataList: ArrayList<Category
 
             val intent = Intent(context, PostListActivity::class.java)
             intent.putExtra("SELECTED_ITEM", viewDataList[position].categoryName)
-            intent.putExtra("MODE", 0)
+            intent.putExtra("MODE", 1)
             context.startActivity(intent)
         }
-
-        /*
-        holder.itemView.setOnLongClickListener{ view ->
-            setPosition(position)
-            Toast.makeText(view.context, "$position 아이템 롱클릭!", Toast.LENGTH_SHORT).show()
-            return@setOnLongClickListener ture
-        }
-*/
 
     }
 

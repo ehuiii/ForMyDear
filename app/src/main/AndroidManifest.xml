@@ -45,6 +45,9 @@
         <activity android:name=".ChildCategoryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity android:name=".ChildPostActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
         <activity android:name=".CategoryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>

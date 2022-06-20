@@ -45,7 +45,7 @@ class PostActivity: AppCompatActivity() {
         setContentView(R.layout.activity_post)
 
         //변수와 위젯 id 연결
-        tvTitle = findViewById(R.id.tvTitle)
+        tvTitle = findViewById(R.id.tvChildCategoryName)
         tvContent = findViewById(R.id.tvContent)
         btnEdit = findViewById(R.id.btnEdit)
         btnBack = findViewById(R.id.btnBack)

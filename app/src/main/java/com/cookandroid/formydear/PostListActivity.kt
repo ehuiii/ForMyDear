@@ -3,6 +3,7 @@ package com.cookandroid.formydear
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,7 @@ class PostListActivity: AppCompatActivity()  {
     lateinit var adapter : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var arrayList: ArrayList<PostData>
-    lateinit var plusBtn : Button//나중에 plusBtn으로 변경
+    lateinit var plusBtn : Button
     lateinit var tvCategoryName: TextView
 
 
@@ -58,6 +59,7 @@ class PostListActivity: AppCompatActivity()  {
         var intent : Intent = getIntent()
 
         var selectedItem : String? = intent.getStringExtra("SELECTED_ITEM")
+        var mode : Int? = intent.getIntExtra("MODE", 0)
 
         //리사이클러뷰에 담을 데이터 가져오기(selectedItem 태그를 통해서 보여줄 게시글 구분)
         mDatabaseRef.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("$selectedItem")
@@ -82,11 +84,15 @@ class PostListActivity: AppCompatActivity()  {
 
         tvCategoryName.setText(intent.getStringExtra("SELECTED_ITEM"))
 
-        adapter = PostDataAdapter(arrayList, this)
+        adapter = PostDataAdapter(arrayList, this, mode)
         rv_post.setAdapter(adapter)
 
         backBtn.setOnClickListener{
             finish()
+        }
+        //아동모드일 경우 글쓰기 버튼 안보이게 하기
+        if(mode == 1){
+            plusBtn.visibility = View.GONE
         }
         plusBtn.setOnClickListener{
             var intent = Intent(this, WritePostActivity::class.java)

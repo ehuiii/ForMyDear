@@ -18,11 +18,13 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
 
     private lateinit var postDataList : ArrayList<PostData>
     private lateinit var context : Context
+    var mode : Int? = 0
 
 
-    constructor(postDataList: ArrayList<PostData>, context: Context) : this() {
+    constructor(postDataList: ArrayList<PostData>, context: Context, int: Int?) : this() {
         this.postDataList = postDataList
         this.context = context
+        this.mode = int
     }
 
     //게시글 목록에서 특정 게시글을 누르면 해당 포지션에 있는 정보들을 intent로 PostActivity에 전달
@@ -33,19 +35,37 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
                 val curPos : Int = adapterPosition
                 val postData : PostData = postDataList.get(curPos)
                 if(curPos != RecyclerView.NO_POSITION){
-                    var intent = Intent(context, PostActivity::class.java).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
-                    intent.putExtra("UID", postData.uid)
-                    intent.putExtra("postTitle", postData.postTitle)
-                    intent.putExtra("postContent", postData.postContent)
-                    intent.putExtra("categoryName", postData.categoryName)
-                    intent.putExtra("postPhotoUri", postData.postPhotoUri)
-                    intent.putExtra("postAudioUri", postData.postAudioUri)
-                    intent.putExtra("postId", postData.postId)
-                    intent.putExtra("star", postData.star)
+                    if(mode == 0){
+                        var intent = Intent(context, PostActivity::class.java).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.putExtra("UID", postData.uid)
+                        intent.putExtra("postTitle", postData.postTitle)
+                        intent.putExtra("postContent", postData.postContent)
+                        intent.putExtra("categoryName", postData.categoryName)
+                        intent.putExtra("postPhotoUri", postData.postPhotoUri)
+                        intent.putExtra("postAudioUri", postData.postAudioUri)
+                        intent.putExtra("postId", postData.postId)
+                        intent.putExtra("star", postData.star)
 
-                    Log.d("hey",postData.postTitle)
+                        Log.d("hey",postData.postTitle)
 
-                    context.startActivity(intent)
+                        context.startActivity(intent)
+
+                    }else{
+                        var intent = Intent(context, ChildPostActivity::class.java).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.putExtra("UID", postData.uid)
+                        intent.putExtra("postTitle", postData.postTitle)
+                        intent.putExtra("postContent", postData.postContent)
+                        intent.putExtra("categoryName", postData.categoryName)
+                        intent.putExtra("postPhotoUri", postData.postPhotoUri)
+                        intent.putExtra("postAudioUri", postData.postAudioUri)
+                        intent.putExtra("postId", postData.postId)
+                        intent.putExtra("star", postData.star)
+
+                        Log.d("hey",postData.postTitle)
+
+                        context.startActivity(intent)
+                    }
+
                 }
             }
         }
