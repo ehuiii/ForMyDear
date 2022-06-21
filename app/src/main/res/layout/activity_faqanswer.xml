@@ -41,6 +41,7 @@ android:background="@color/oatmeal">
 
     <EditText
         android:id="@+id/faqDQ"
+        android:textSize="15sp"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_below="@+id/toolbar"
@@ -69,6 +70,7 @@ android:background="@color/oatmeal">
         android:layout_marginStart="50dp"
         android:layout_marginTop="164dp"
         android:layout_marginEnd="51dp"
+        android:textSize="13sp"
         android:text="답변" />
 
 

@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import java.util.HashMap
 import java.util.regex.Pattern
 ;
 class RegisterActivity : AppCompatActivity() {
@@ -128,6 +129,7 @@ class RegisterActivity : AppCompatActivity() {
 //                        storage?.reference?.child(account.userId).activeUploadTasks {
 //                            Log.d("storage", "이미지 삭제완료")
 //                        }
+                        //uploadData()
 
                         Toast.makeText(this, "$strName 님, 가입을 축하합니다", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, LoginActivity::class.java)
@@ -140,5 +142,53 @@ class RegisterActivity : AppCompatActivity() {
                 }
         }
     }
+
+    //uploadData위한 변수
+    var imgUrl : String = ""
+    var audUrl : String = ""
+    var postId: String = ""
+
+    private var postDataList = arrayListOf<PostData>(
+        PostData("${mFirebaseAuth!!.currentUser!!.uid}", "음식", "", "", "", "", "", "", 1, ""),
+    )
+    /*
+    private fun uploadData(){
+        mDatabaseRef.child("UserAccount").child("${mFirebaseAuth!!.currentUser!!.uid}")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //파이어베이스의 데이터를 가져옴
+                    var user: UserAccount? = snapshot.getValue(UserAccount::class.java)
+                    Log.d("택", "${user!!.userId.toString()}")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("Tag", "Failed")
+                }
+            })
+
+        val hashMap : HashMap<String, Any> = HashMap()
+
+        var strTitle: String = edtTitle.text.toString()
+        var strContent = edtContent.text.toString()
+        var strPostId: String = postId
+
+        hashMap.put("postId", strPostId)
+        hashMap.put("postPhotoUri", downloadUrl.toString())
+        hashMap.put("postAudioUri", downloadAudioUrl)
+        hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
+        hashMap.put("postTitle", strTitle)
+        hashMap.put("postContent", strContent)
+        hashMap.put("categoryName", selectedItem.toString())
+        hashMap.put("timestamp", timestamp)
+        hashMap.put("star", 1)
+
+        mDatabaseRef.ref.child("PostData").child("${mFirebaseAuth!!.currentUser!!.uid}").child("${selectedItem}").child(postId).setValue(hashMap)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    Toast.makeText(this, "업로드", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+    }*/
 
 }
