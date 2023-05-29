@@ -17,3 +17,6 @@
 - 알아보기 쉬운 UI
 
 ## 시연영상
+
+https://github.com/tldnjs324/ForMyDear/assets/73284904/f0d529b0-250a-44dd-8531-363480496eeb
+
